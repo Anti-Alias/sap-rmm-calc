@@ -11,6 +11,11 @@ body {
     display: flex;
 }
 
+.hbox-center {
+    display: flex;
+    justify-content: center;
+}
+
 .vbox {
     display: flex;
     flex-direction: column;
