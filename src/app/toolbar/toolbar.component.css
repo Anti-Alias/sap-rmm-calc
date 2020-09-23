@@ -1,0 +1,29 @@
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+a:link {
+    color: inherit;
+}
+
+.home {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.page {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.tail {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
