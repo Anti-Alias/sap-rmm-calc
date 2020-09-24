@@ -1,50 +1,137 @@
 <h1 class="hbox-center">SAP RMM Calculator</h1>
 
-<div class="hbox-center">
-    <div class="vbox form">
-        <mat-form-field>
-            <mat-label>Pool Percent</mat-label>
-            <mat-select required>
-                <mat-option *ngFor="let percent of poolPercents" [value]="percent">{{percent}}</mat-option>
-            </mat-select>
-        </mat-form-field>
+<div class="hbox">
+    <span class="spacer"></span>
+    <mat-grid-list cols="2" rowHeight="70px">
 
-        <mat-form-field>
-            <mat-label>FM Participation Percent</mat-label>
-            <input matInput [(ngModel)]="fmParticipationPercent" type="number" required>
-        </mat-form-field>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Pool Percent</mat-label>
+                <mat-select [(ngModel)]="poolPercent" (ngModelChange)=onChange($event) required>
+                    <mat-option *ngFor="let percent of poolPercents" [value]="percent">{{percent}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
 
-        <mat-form-field>
-            <mat-label>UPB Investor Prior Amount</mat-label>
-            <input matInput [(ngModel)]="upbInvestorPriorAmount" type="number" required>
-        </mat-form-field>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>FM Participation Percent</mat-label>
+                <input matInput [(ngModel)]="fmParticipationPercent" type="number" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
 
-        <mat-form-field>
-            <mat-label>Mortgage UPB Prior Amount</mat-label>
-            <input matInput [(ngModel)]="mortgageUpbPriorAmount" type="number" required>
-        </mat-form-field>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>UPB Investor Prior Amount</mat-label>
+                <input matInput [(ngModel)]="upbInvestorPriorAmount" type="number" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
 
-        <mat-form-field>
-            <mat-label>UPB Current Amount</mat-label>
-            <input matInput [(ngModel)]="upbCurrentAmount" type="number" required>
-        </mat-form-field>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Mortgage UPB Prior Amount</mat-label>
+                <input matInput [(ngModel)]="mortgageUpbPriorAmount" type="number" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
 
-        <mat-form-field>
-            <mat-label>PI Payment Amount</mat-label>
-            <input matInput [(ngModel)]="piPaymentAmount" type="number" required>
-        </mat-form-field>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>UPB Current Amount</mat-label>
+                <input matInput [(ngModel)]="upbCurrentAmount" type="number" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
 
-        <mat-form-field>
-            <mat-label>Note Rate</mat-label>
-            <input matInput [(ngModel)]="noteRate" type="number" required>
-        </mat-form-field>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>PI Payment Amount</mat-label>
+                <input matInput [(ngModel)]="piPaymentAmount" type="number" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
 
-        <mat-form-field>
-            <mat-label>Pool Term</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let term of poolTerms" [value]="term">{{term}}</mat-option>
-            </mat-select>
-        </mat-form-field>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Note Rate</mat-label>
+                <input matInput [(ngModel)]="noteRate" type="number" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
 
-    </div>
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Pool Term</mat-label>
+                <mat-select [(ngModel)]="poolTerm" (ngModelChange)=onChange($event) required>
+                    <mat-option *ngFor="let term of poolTerms" [value]="term">{{term}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Product Code</mat-label>
+                <input matInput [(ngModel)]="productCode" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Maturity Date</mat-label>
+                <input matInput [(ngModel)]="maturityDate" type="date" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Note Maturity Date</mat-label>
+                <input [(ngModel)]="noteMaturityDate" matInput type="date" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Principal Amortization Code</mat-label>
+                <mat-select [(ngModel)]="principalAmortizationCode" (ngModelChange)=onChange($event) required>
+                    <mat-option *ngFor="let code of principalAmortizationCodes" [value]="code">{{code}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>DDLPI</mat-label>
+                <input matInput [(ngModel)]=ddlpi type="date" (ngModelChange)=onChange($event) required>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Active Inactive Edit Code</mat-label>
+                <mat-select [(ngModel)]="activeInactiveEditCode" (ngModelChange)=onChange($event) required>
+                    <mat-option *ngFor="let code of activeInactiveEditCodes" [value]="code">{{code}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>UPB Adjustment Amount Current</mat-label>
+                <input matInput [(ngModel)]=upbAdjustmentAmountCurrent type="number">
+            </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field>
+                <mat-label>Loan Status</mat-label>
+                <mat-select [(ngModel)]="loanStatus" (ngModelChange)=onChange($event) required>
+                    <mat-option *ngFor="let status of loanStatuses" [value]="status">{{status}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+    <span class="spacer"></span>
+</div>
+
+<div class="hbox">
+    <span class="spacer"></span>
+    <button mat-raised-button color="primary" [disabled]="!allFieldsPopulated">Calculate</button>
+    <span class="spacer"></span>
 </div>

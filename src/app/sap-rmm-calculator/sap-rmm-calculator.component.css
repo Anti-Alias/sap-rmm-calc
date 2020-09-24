@@ -5,3 +5,7 @@
 mat-form-field {
     margin: 3px;
 }
+
+mat-grid-list {
+    width: 450px;
+}
