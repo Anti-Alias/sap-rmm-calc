@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs/operators'
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sap-rmm-calculator',
@@ -9,7 +8,7 @@ import { map } from 'rxjs/operators'
 })
 export class SapRmmCalculatorComponent implements OnInit {
 
-  // Fields that populate dropdowns
+  // Fields that populate dropdowns. Stubs.
   poolPercents: number[] = [5, 10, 15]
   poolTerms: number[] = [1, 3, 5, 10, 15, 20, 25, 30]
   principalAmortizationCodes: string[] = ["1AC", "2AC", "3AC"]
@@ -20,30 +19,31 @@ export class SapRmmCalculatorComponent implements OnInit {
   form = new FormGroup({
     poolPercent: new FormControl(null, [Validators.required]),
     fmParticipationPercent: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(100)]),
-    upbInvestorPriorAmount: new FormControl(null, [Validators.required]),
-    mortgageUpbPriorAmount: new FormControl(null, [Validators.required]),
-    upbCurrentAmount: new FormControl(null, [Validators.required]),
-    piPaymentAmount: new FormControl(null, [Validators.required]),
-    noteRate: new FormControl(null, [Validators.required]),
+    upbInvestorPriorAmount: new FormControl(null, [Validators.required, Validators.min(0)]),
+    mortgageUpbPriorAmount: new FormControl(null, [Validators.required, Validators.min(0)]),
+    upbCurrentAmount: new FormControl(null, [Validators.required, Validators.min(0)]),
+    piPaymentAmount: new FormControl(null, [Validators.required, Validators.min(0)]),
+    noteRate: new FormControl(null, [Validators.required, Validators.min(0)]),
     poolTerm: new FormControl(null, [Validators.required]),
-    productCode: new FormControl(null, [Validators.required]),
+    productCode: new FormControl(null, [Validators.required, Validators.minLength(3)]),
     maturityDate: new FormControl(null, [Validators.required]),
     noteMaturityDate: new FormControl(null, [Validators.required]),
-    principalAmortizationCode: new FormControl(null, [Validators.required]),
+    principalAmortizationCode: new FormControl(null, [Validators.required, Validators.minLength(3)]),
     ddlpi: new FormControl(null, [Validators.required]),
     activeInactiveEditCode: new FormControl(null, [Validators.required]),
-    upbAdjustmentAmountCurrent: new FormControl(null, [Validators.required]),
+    upbAdjustmentAmountCurrent: new FormControl(null, [Validators.required, Validators.min(0)]),
     loanStatus: new FormControl(null, [Validators.required])
   })
 
   // Data entered in form
-
-  get poolPercent(): AbstractControl { return this.form.get('poolPercent') }
+  get isValid(): boolean {
+    return this.form.status != "INVALID"
+  }
 
   constructor() { }
 
   ngOnInit(): void {
-    this.poolPercent.valueChanges.subscribe(
+    this.form.get('poolPercent').valueChanges.subscribe(
       (result)=>{
         console.log(`Got result ${result}`)
         console.log(this.form.get('fmParticipationPercent').valid)
@@ -56,9 +56,5 @@ export class SapRmmCalculatorComponent implements OnInit {
   }
 
   onSubmit(event: {}): void {
-  }
-
-  get isValid(): boolean {
-    return this.form.status != "INVALID"
   }
 }

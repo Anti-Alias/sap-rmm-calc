@@ -2,6 +2,12 @@ mat-toolbar {
     position: fixed;
     top: 0;
     z-index: 100;
+    box-shadow: 0px 0px 5px 5px #00000030;
+}
+
+.company {
+    width: 120px;
+    margin: 5px 10px 5px 10px;
 }
 
 a:link {
@@ -10,17 +16,15 @@ a:link {
 
 .home {
     font-size: 17px;
-    font-weight: bold;
+    margin-right: 40px;
 }
 
 .page {
     font-size: 15px;
-    font-weight: bold;
 }
 
 .tail {
     font-size: 12px;
-    font-weight: bold;
     padding: 0;
 }
 

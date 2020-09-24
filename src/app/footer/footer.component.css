@@ -1,0 +1,9 @@
+.footer {
+    box-shadow: 0px 0px 5px 5px #00000030;
+}
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0px 0px 5px 5px #00000030;
+}
