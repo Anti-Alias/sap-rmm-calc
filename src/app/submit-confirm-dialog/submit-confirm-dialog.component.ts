@@ -6,14 +6,10 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './submit-confirm-dialog.component.html',
   styleUrls: ['./submit-confirm-dialog.component.css']
 })
-export class SubmitConfirmDialogComponent implements OnInit {
+export class SubmitConfirmDialogComponent {
 
   constructor(private dialogRef: MatDialogRef<SubmitConfirmDialogComponent>) {
     console.log(dialogRef)
-  }
-
-  ngOnInit(): void {
-
   }
 
   close(result: string): void {

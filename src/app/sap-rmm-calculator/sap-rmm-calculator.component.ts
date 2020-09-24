@@ -39,8 +39,8 @@ export class SapRmmCalculatorComponent implements OnInit {
 
   // Data entered in form
   get isValid(): boolean {
-    return true
-    //return this.form.status != "INVALID"
+    //return true
+    return this.form.status != "INVALID"
   }
 
   constructor(public dialog: MatDialog) {}
