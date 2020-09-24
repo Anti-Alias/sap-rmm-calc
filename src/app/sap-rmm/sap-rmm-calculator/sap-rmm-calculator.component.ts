@@ -1,14 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { SubmitConfirmDialogComponent } from '../submit-confirm-dialog/submit-confirm-dialog.component';
+import { Router } from '@angular/router';
+import { SubmitConfirmDialogComponent } from '../../submit-confirm-dialog/submit-confirm-dialog.component';
+import { SAPRMM } from '../sap-rmm.model';
+import { SAPRMMService } from '../sap-rmm.service';
 
 @Component({
   selector: 'app-sap-rmm-calculator',
   templateUrl: './sap-rmm-calculator.component.html',
   styleUrls: ['./sap-rmm-calculator.component.css']
 })
-export class SapRmmCalculatorComponent implements OnInit {
+export class SapRmmCalculatorComponent {
 
   // Fields that populate dropdowns. Stubs.
   poolPercents: number[] = [5, 10, 15]
@@ -37,33 +40,44 @@ export class SapRmmCalculatorComponent implements OnInit {
     loanStatus: new FormControl(null, [Validators.required])
   })
 
-  // Data entered in form
-  get isValid(): boolean {
-    //return true
-    return this.form.status != "INVALID"
-  }
+  constructor(public dialog: MatDialog, public service: SAPRMMService, private router: Router) {}
 
-  constructor(public dialog: MatDialog) {}
-
-  ngOnInit(): void {
-    this.form.get('poolPercent').valueChanges.subscribe(
-      (result)=>{
-        console.log(`Got result ${result}`)
-        console.log(this.form.get('fmParticipationPercent').valid)
-        console.log(this.form.status)
-      },
-      (error)=>{
-        `Got error ${error}`
-      }
+  private getFormData(): SAPRMM {
+    return new SAPRMM(
+      this.form.get('poolPercent').value,
+      this.form.get('fmParticipationPercent').value,
+      this.form.get('upbInvestorPriorAmount').value,
+      this.form.get('mortgageUpbPriorAmount').value,
+      this.form.get('upbCurrentAmount').value,
+      this.form.get('piPaymentAmount').value,
+      this.form.get('noteRate').value,
+      this.form.get('poolTerm').value,
+      this.form.get('poolPercent').value,
+      this.form.get('maturityDate').value,
+      this.form.get('noteMaturityDate').value,
+      this.form.get('principalAmortizationCode').value,
+      this.form.get('ddlpi').value,
+      this.form.get('activeInactiveEditCode').value,
+      this.form.get('upbAdjustmentAmountCurrent').value,
+      this.form.get('loanStatus').value
     )
   }
 
-  onSubmit(event: {}): void {
+  // Data entered in form
+  get isValid(): boolean {
+    return true
+    //return this.form.status != "INVALID"
+  }
+
+  onSubmit(event: Event): void {
     this.dialog
       .open(SubmitConfirmDialogComponent)
       .afterClosed()
       .subscribe((result)=>{
-        console.log(`Got result ${result}`)
+        if(result == "yes") {
+          this.service.formState = this.getFormData()
+          this.router.navigateByUrl('/sap-rmm-confirm')
+        }
       })
   }
 }
