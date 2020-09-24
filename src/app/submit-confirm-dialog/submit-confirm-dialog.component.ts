@@ -8,9 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class SubmitConfirmDialogComponent {
 
-  constructor(private dialogRef: MatDialogRef<SubmitConfirmDialogComponent>) {
-    console.log(dialogRef)
-  }
+  constructor(private dialogRef: MatDialogRef<SubmitConfirmDialogComponent>) {}
 
   close(result: string): void {
     this.dialogRef.close(result)
