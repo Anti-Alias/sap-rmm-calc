@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-sap-rmm-calculator',
@@ -14,48 +16,53 @@ export class SapRmmCalculatorComponent implements OnInit {
   activeInactiveEditCodes: string[] = ["AE", "IAEC"]
   loanStatuses: string[] = ["Active", "Inactive"]
 
-  // Data entered in form
-  poolPercent?: number = null
-  fmParticipationPercent?: number = null
-  upbInvestorPriorAmount?: number = null
-  mortgageUpbPriorAmount?: number = null
-  upbCurrentAmount?: number = null
-  piPaymentAmount?: number = null
-  noteRate?: number = null
-  poolTerm?: number = null
-  productCode?: string = null
-  maturityDate?: string = null
-  noteMaturityDate?: string = null
-  principalAmortizationCode?: string = null
-  ddlpi?: string = null
-  activeInactiveEditCode?: string = null
-  upbAdjustmentAmountCurrent?: number = null
-  loanStatus?: string = null
+  // Form controls
+  form = new FormGroup({
+    poolPercent: new FormControl(null, [Validators.required]),
+    fmParticipationPercent: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(100)]),
+    upbInvestorPriorAmount: new FormControl(null, [Validators.required]),
+    mortgageUpbPriorAmount: new FormControl(null, [Validators.required]),
+    upbCurrentAmount: new FormControl(null, [Validators.required]),
+    piPaymentAmount: new FormControl(null, [Validators.required]),
+    noteRate: new FormControl(null, [Validators.required]),
+    poolTerm: new FormControl(null, [Validators.required]),
+    productCode: new FormControl(null, [Validators.required]),
+    maturityDate: new FormControl(null, [Validators.required]),
+    noteMaturityDate: new FormControl(null, [Validators.required]),
+    principalAmortizationCode: new FormControl(null, [Validators.required]),
+    ddlpi: new FormControl(null, [Validators.required]),
+    activeInactiveEditCode: new FormControl(null, [Validators.required]),
+    upbAdjustmentAmountCurrent: new FormControl(null, [Validators.required]),
+    loanStatus: new FormControl(null, [Validators.required])
+  })
 
-  // Helper vars
-  allFieldsPopulated: boolean = false
+  // Data entered in form
+
+  get poolPercent(): AbstractControl { return this.form.get('poolPercent') }
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.poolPercent.valueChanges.subscribe(
+      (result)=>{
+        console.log(`Got result ${result}`)
+        console.log(this.form.get('fmParticipationPercent').valid)
+        console.log(this.form.status)
+      },
+      (error)=>{
+        `Got error ${error}`
+      }
+    )
+  }
 
-  onChange(event: {}) {
-    this.allFieldsPopulated =
-      this.poolPercent != null &&
-      this.fmParticipationPercent != null &&
-      this.upbInvestorPriorAmount != null &&
-      this.mortgageUpbPriorAmount != null &&
-      this.upbCurrentAmount != null &&
-      this.piPaymentAmount != null &&
-      this.noteRate != null &&
-      this.poolTerm != null &&
-      this.productCode != null &&
-      this.maturityDate != null &&
-      this.noteMaturityDate != null &&
-      this.principalAmortizationCode != null &&
-      this.ddlpi != null &&
-      this.activeInactiveEditCode != null &&
-      this.upbAdjustmentAmountCurrent != null &&
-      this.loanStatus != null
+  onSubmit(event: {}): void {
+  }
+
+  get isValid(): boolean {
+    return this.form.status != "INVALID"
+  }
+
+  getStatus() {
+    return this.isValid ? "" : "Please fill out every field."
   }
 }
