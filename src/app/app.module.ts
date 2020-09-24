@@ -7,6 +7,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatGridListModule } from '@angular/material/grid-list'
+import { MatDialogModule } from '@angular/material/dialog'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -16,7 +17,8 @@ import { BananaComponent } from './banana/banana.component'
 import { HomeComponent } from './home/home.component'
 import { FooterComponent } from './footer/footer.component'
 import { SapRmmCalculatorComponent } from './sap-rmm-calculator/sap-rmm-calculator.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SubmitConfirmDialogComponent } from './submit-confirm-dialog/submit-confirm-dialog.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HomeComponent,
     FooterComponent,
     SapRmmCalculatorComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SubmitConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

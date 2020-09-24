@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { SubmitConfirmDialogComponent } from '../submit-confirm-dialog/submit-confirm-dialog.component';
 
 @Component({
   selector: 'app-sap-rmm-calculator',
@@ -37,10 +39,11 @@ export class SapRmmCalculatorComponent implements OnInit {
 
   // Data entered in form
   get isValid(): boolean {
-    return this.form.status != "INVALID"
+    return true
+    //return this.form.status != "INVALID"
   }
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.form.get('poolPercent').valueChanges.subscribe(
@@ -56,5 +59,6 @@ export class SapRmmCalculatorComponent implements OnInit {
   }
 
   onSubmit(event: {}): void {
+    this.dialog.open(SubmitConfirmDialogComponent)
   }
 }
