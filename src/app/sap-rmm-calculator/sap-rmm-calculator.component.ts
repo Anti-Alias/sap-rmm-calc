@@ -61,8 +61,4 @@ export class SapRmmCalculatorComponent implements OnInit {
   get isValid(): boolean {
     return this.form.status != "INVALID"
   }
-
-  getStatus() {
-    return this.isValid ? "" : "Please fill out every field."
-  }
 }
