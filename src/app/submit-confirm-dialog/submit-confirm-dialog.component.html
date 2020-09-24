@@ -1,7 +1,7 @@
 <p>Are you sure you wish to submit?</p>
 <div class="hbox">
     <span class="spacer"></span>
-    <button mat-raised-button color="accent">Yes</button>
-    <button mat-raised-button color="accent">No</button>
+    <button mat-raised-button color="accent" (click)="close('yes')">Yes</button>
+    <button mat-raised-button color="accent" (click)="close('no')">No</button>
     <span class="spacer"></span>
 </div>

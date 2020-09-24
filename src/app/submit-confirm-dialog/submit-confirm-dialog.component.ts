@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-submit-confirm-dialog',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubmitConfirmDialogComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private dialogRef: MatDialogRef<SubmitConfirmDialogComponent>) {
+    console.log(dialogRef)
   }
 
+  ngOnInit(): void {
+
+  }
+
+  close(result: string): void {
+    this.dialogRef.close(result)
+  }
 }

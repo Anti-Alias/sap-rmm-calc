@@ -59,6 +59,11 @@ export class SapRmmCalculatorComponent implements OnInit {
   }
 
   onSubmit(event: {}): void {
-    this.dialog.open(SubmitConfirmDialogComponent)
+    this.dialog
+      .open(SubmitConfirmDialogComponent)
+      .afterClosed()
+      .subscribe((result)=>{
+        console.log(`Got result ${result}`)
+      })
   }
 }
