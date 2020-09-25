@@ -1,11 +1,9 @@
-.form {
-    width: 30%;
-}
-
 mat-form-field {
-    margin: 3px;
+    width: 350px;
+    margin: 0 3px 0 3px;
+    font-weight: bold;
 }
 
 mat-grid-list {
-    width: 450px;
+    width: 800px;
 }
