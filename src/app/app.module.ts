@@ -22,6 +22,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SubmitConfirmDialogComponent } from './submit-confirm-dialog/submit-confirm-dialog.component';
 import { SapRmmCalculatorComponent } from './sap-rmm/sap-rmm-calculator/sap-rmm-calculator.component';
 import { SapRmmConfirmComponent } from './sap-rmm/sap-rmm-confirm/sap-rmm-confirm.component';
+import { AcknowledgeDialogComponent } from './acknowledge-dialog/acknowledge-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SapRmmConfirmComponent } from './sap-rmm/sap-rmm-confirm/sap-rmm-confir
     SapRmmCalculatorComponent,
     PageNotFoundComponent,
     SubmitConfirmDialogComponent,
-    SapRmmConfirmComponent
+    SapRmmConfirmComponent,
+    AcknowledgeDialogComponent
   ],
   imports: [
     BrowserModule,
