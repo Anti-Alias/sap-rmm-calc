@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import { SAPRMMService } from '../sap-rmm.service';
+import { SAPRMMService } from '../../services/sap-rmm.service';
+import { MatDialog } from '@angular/material/dialog'
+import { SubmitConfirmDialogComponent } from 'src/app/submit-confirm-dialog/submit-confirm-dialog.component';
+import { DataStorageService } from 'src/app/services/data-storage.service';
+import { map, mergeMap } from 'rxjs/operators'
+import { Router } from '@angular/router';
 
 export interface SAPRMMSubData {
   saprmmid: string;
@@ -21,10 +26,15 @@ export class SapRmmConfirmComponent implements OnInit {
   displayedColumns: string[] = ['saprmmid', 'upb', 'rmm', 'loanStatus', 'upbCurrentAmount', 'maturityDate', 'poolTerm'];
   dataSource: SAPRMMSubData[]
 
-  constructor(private service: SAPRMMService) {}
+  constructor(
+    public dialog: MatDialog,
+    private saprmmService: SAPRMMService,
+    private dataStorageService: DataStorageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    const data = this.service.formState
+    const data = this.saprmmService.formState
     this.dataSource = [
       {
         saprmmid: "STUB",
@@ -36,5 +46,23 @@ export class SapRmmConfirmComponent implements OnInit {
         poolTerm: data.poolTerm
       }
     ]
+  }
+
+  onConfirm(event: Event): void {
+    this.dialog
+      .open(SubmitConfirmDialogComponent, {data: "Are you sure you want to confirm transaction?"})
+      .afterClosed()
+      .pipe(mergeMap(result=>{
+        return this.dataStorageService.storeSAPRMM(this.saprmmService.formState)
+      }))
+      .subscribe(
+        result => {
+          console.log(`Got result ${JSON.stringify(result)}`)
+          this.router.navigateByUrl('/bananas')
+        },
+        error => {
+          console.log(`Got error ${JSON.stringify(error)}`)
+        }
+      )
   }
 }

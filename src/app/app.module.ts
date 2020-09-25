@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSelectModule } from '@angular/material/select'
@@ -40,6 +41,7 @@ import { SapRmmConfirmComponent } from './sap-rmm/sap-rmm-confirm/sap-rmm-confir
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NoopAnimationsModule,
     MatButtonModule,
     MatToolbarModule,

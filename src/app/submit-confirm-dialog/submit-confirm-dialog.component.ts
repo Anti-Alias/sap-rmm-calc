@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-submit-confirm-dialog',
@@ -8,7 +8,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class SubmitConfirmDialogComponent {
 
-  constructor(private dialogRef: MatDialogRef<SubmitConfirmDialogComponent>) {}
+  constructor(
+    private dialogRef: MatDialogRef<SubmitConfirmDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public message: string
+  ) {}
 
   close(result: string): void {
     this.dialogRef.close(result)

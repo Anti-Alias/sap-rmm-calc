@@ -1,10 +1,10 @@
 <div class="hbox">
     <span class="spacer"></span>
-    <h1>Confirm</h1>
+    <h1>Confirm Transaction</h1>
     <span class="spacer"></span>
 </div>
 
-<div  class="mat-elevation-z8">
+<div  class="mat-elevation-z8 container">
     <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="saprmmid">
@@ -46,4 +46,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 15]"></mat-paginator>
+</div>
+
+<div class="hbox">
+    <span class="spacer"></span>
+    <button mat-raised-button color="primary" (click)="onConfirm($event)">Confirm</button>
+    <button mat-raised-button color="primary" routerLink="/sap-rmm-calc">Cancel</button>
+    <span class="spacer"></span>
 </div>

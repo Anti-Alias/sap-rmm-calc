@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { SAPRMM } from './sap-rmm.model'
+import { SAPRMM } from '../sap-rmm/sap-rmm.model'
 
 @Injectable({
   providedIn: 'root'

@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SubmitConfirmDialogComponent } from '../../submit-confirm-dialog/submit-confirm-dialog.component';
 import { SAPRMM } from '../sap-rmm.model';
-import { SAPRMMService } from '../sap-rmm.service';
+import { SAPRMMService } from '../../services/sap-rmm.service';
 
 @Component({
   selector: 'app-sap-rmm-calculator',
@@ -40,7 +40,11 @@ export class SapRmmCalculatorComponent {
     loanStatus: new FormControl(null, [Validators.required])
   })
 
-  constructor(public dialog: MatDialog, public service: SAPRMMService, private router: Router) {}
+  constructor(
+    public dialog: MatDialog,
+    public service: SAPRMMService,
+    private router: Router
+  ) {}
 
   private getFormData(): SAPRMM {
     return new SAPRMM(
@@ -65,13 +69,13 @@ export class SapRmmCalculatorComponent {
 
   // Data entered in form
   get isValid(): boolean {
-    return true
-    //return this.form.status != "INVALID"
+    return true;
+    return this.form.status != "INVALID"
   }
 
   onSubmit(event: Event): void {
     this.dialog
-      .open(SubmitConfirmDialogComponent)
+      .open(SubmitConfirmDialogComponent, {data: "Are you sure you wish to submit?"})
       .afterClosed()
       .subscribe((result)=>{
         if(result == "yes") {

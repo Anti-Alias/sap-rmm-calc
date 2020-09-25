@@ -1,4 +1,12 @@
 table {
     width: 100%;
+}
+
+.container {
     margin-bottom: 20px;
+}
+
+
+button {
+    margin: 5px;
 }
