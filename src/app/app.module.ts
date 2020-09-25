@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatDialogModule } from '@angular/material/dialog'
+import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -19,7 +21,7 @@ import { FooterComponent } from './footer/footer.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SubmitConfirmDialogComponent } from './submit-confirm-dialog/submit-confirm-dialog.component';
 import { SapRmmCalculatorComponent } from './sap-rmm/sap-rmm-calculator/sap-rmm-calculator.component';
-import { SapRmmConfirmComponent } from './sap-rmm/sap-rmm-confirm/sap-rmm-confirm.component'
+import { SapRmmConfirmComponent } from './sap-rmm/sap-rmm-confirm/sap-rmm-confirm.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { SapRmmConfirmComponent } from './sap-rmm/sap-rmm-confirm/sap-rmm-confir
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

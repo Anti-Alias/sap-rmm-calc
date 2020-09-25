@@ -3,3 +3,47 @@
     <h1>Confirm</h1>
     <span class="spacer"></span>
 </div>
+
+<div  class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="saprmmid">
+            <th mat-header-cell *matHeaderCellDef>SAPRMMID</th>
+            <td mat-cell *matCellDef="let element"> {{element.saprmmid}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="upb">
+            <th mat-header-cell *matHeaderCellDef>UPB</th>
+            <td mat-cell *matCellDef="let element"> {{element.upb}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rmm">
+            <th mat-header-cell *matHeaderCellDef>RMM</th>
+            <td mat-cell *matCellDef="let element"> {{element.rmm}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="loanStatus">
+            <th mat-header-cell *matHeaderCellDef>Loan Status</th>
+            <td mat-cell *matCellDef="let element"> {{element.loanStatus}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="upbCurrentAmount">
+            <th mat-header-cell *matHeaderCellDef>UPB Current Amount</th>
+            <td mat-cell *matCellDef="let element"> {{element.upbCurrentAmount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="maturityDate">
+            <th mat-header-cell *matHeaderCellDef>Maturity Date</th>
+            <td mat-cell *matCellDef="let element"> {{element.maturityDate | date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="poolTerm">
+            <th mat-header-cell *matHeaderCellDef>Pool Term</th>
+            <td mat-cell *matCellDef="let element"> {{element.poolTerm | date}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]"></mat-paginator>
+</div>
