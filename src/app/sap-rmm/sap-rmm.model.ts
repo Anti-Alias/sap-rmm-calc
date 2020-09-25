@@ -7,7 +7,7 @@ export class SAPRMM {
         public upbCurrentAmount: number,
         public piPaymentAmount: number,
         public noteRate: number,
-        public poolTerm: Date,
+        public poolTerm: number,
         public productCode: string,
         public maturityDate: Date,
         public noteMaturityDate: Date,

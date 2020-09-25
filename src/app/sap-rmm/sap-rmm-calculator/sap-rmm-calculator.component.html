@@ -59,7 +59,7 @@
             <mat-grid-tile>
                 <mat-form-field>
                     <mat-label>Pool Term</mat-label>
-                    <mat-select type="date" formControlName="poolTerm">
+                    <mat-select type="number" formControlName="poolTerm">
                         <mat-option *ngFor="let term of poolTerms" [value]="term">{{term}}</mat-option>
                     </mat-select>
                 </mat-form-field>

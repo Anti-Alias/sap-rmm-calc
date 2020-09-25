@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { SAPRMMService } from '../sap-rmm.service';
 
 export interface SAPRMMSubData {
   saprmmid: string;
@@ -7,7 +8,7 @@ export interface SAPRMMSubData {
   loanStatus: string,
   upbCurrentAmount: number,
   maturityDate: Date,
-  poolTerm: Date
+  poolTerm: number
 }
 
 @Component({
@@ -15,27 +16,25 @@ export interface SAPRMMSubData {
   styleUrls: ['sap-rmm-confirm.component.css'],
   templateUrl: 'sap-rmm-confirm.component.html',
 })
-export class SapRmmConfirmComponent {
-  displayedColumns: string[] = ['saprmmid', 'upb', 'rmm', 'loanStatus', 'upbCurrentAmount', 'maturityDate', 'poolTerm'];
-  dataSource: SAPRMMSubData[] = [
-    {
-      saprmmid: 'abc123',
-      upb: 100,
-      rmm: 'abc123',
-      loanStatus: 'Active',
-      upbCurrentAmount: 3,
-      maturityDate: new Date("2015-03-25"),
-      poolTerm: new Date("2015-03-25")
-    }
-  ];
-}
+export class SapRmmConfirmComponent implements OnInit {
 
-interface SAPRMMSubData2 {
-  saprmmid: string,
-  upb: number,
-  rmm: string,
-  loanStatus: string,
-  upbCurrentAmount: number,
-  maturityDate: Date,
-  poolTerm: Date
+  displayedColumns: string[] = ['saprmmid', 'upb', 'rmm', 'loanStatus', 'upbCurrentAmount', 'maturityDate', 'poolTerm'];
+  dataSource: SAPRMMSubData[]
+
+  constructor(private service: SAPRMMService) {}
+
+  ngOnInit(): void {
+    const data = this.service.formState
+    this.dataSource = [
+      {
+        saprmmid: "STUB",
+        upb: data.upbAdjustmentAmountCurrent,
+        rmm: "STUB",
+        loanStatus: data.loanStatus,
+        upbCurrentAmount: data.upbCurrentAmount,
+        maturityDate: data.maturityDate,
+        poolTerm: data.poolTerm
+      }
+    ]
+  }
 }
