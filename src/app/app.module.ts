@@ -16,7 +16,6 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ToolbarComponent } from './toolbar/toolbar.component'
-import { BananaComponent } from './banana/banana.component'
 import { HomeComponent } from './home/home.component'
 import { FooterComponent } from './footer/footer.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -28,7 +27,6 @@ import { SapRmmConfirmComponent } from './sap-rmm/sap-rmm-confirm/sap-rmm-confir
   declarations: [
     AppComponent,
     ToolbarComponent,
-    BananaComponent,
     HomeComponent,
     FooterComponent,
     SapRmmCalculatorComponent,
