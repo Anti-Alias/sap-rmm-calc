@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { SAPRMMService } from '../../services/sap-rmm.service';
   templateUrl: './sap-rmm-calculator.component.html',
   styleUrls: ['./sap-rmm-calculator.component.css']
 })
-export class SapRmmCalculatorComponent {
+export class SapRmmCalculatorComponent implements OnInit {
 
   // Fields that populate dropdowns. Stubs.
   poolPercents: number[] = [5, 10, 15]
@@ -45,6 +45,21 @@ export class SapRmmCalculatorComponent {
     public service: SAPRMMService,
     private router: Router
   ) {}
+
+  ngOnInit() {
+  }
+
+  private markAsTouchedUntil(formControlName: string) {
+    const controlEntries = Object.entries(this.form.controls)
+    for(const entry of controlEntries) {
+      const name = entry[0]
+      const control = entry[1]
+      if(name !== formControlName)
+        control.markAsTouched()
+      else
+        break
+    }
+  }
 
   private getFormData(): SAPRMM {
     return new SAPRMM(
