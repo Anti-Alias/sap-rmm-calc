@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sap-rmm-calculator": {
+      "hosting": {
+        "sap-rmm-calc": [
+          "sap-rmm-calculator"
+        ]
+      }
+    }
+  }
+}

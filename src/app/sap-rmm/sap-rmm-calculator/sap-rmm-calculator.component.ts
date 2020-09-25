@@ -69,7 +69,6 @@ export class SapRmmCalculatorComponent {
 
   // Data entered in form
   get isValid(): boolean {
-    return true;
     return this.form.status != "INVALID"
   }
 
