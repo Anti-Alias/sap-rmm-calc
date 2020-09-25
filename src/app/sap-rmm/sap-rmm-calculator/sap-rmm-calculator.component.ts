@@ -49,10 +49,12 @@ export class SapRmmCalculatorComponent implements OnInit {
   ngOnInit() {
   }
 
-  private markAsTouchedUntil(formControlName: string) {
+  private validateUntil(formControlName: string) {
+    console.log(formControlName)
     const controlEntries = Object.entries(this.form.controls)
     for(const entry of controlEntries) {
       const name = entry[0]
+      console.log(name)
       const control = entry[1]
       if(name !== formControlName)
         control.markAsTouched()

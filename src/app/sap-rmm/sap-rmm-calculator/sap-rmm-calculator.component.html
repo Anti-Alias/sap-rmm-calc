@@ -6,7 +6,7 @@
         <mat-grid-list cols="2" rowHeight="90px">
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('poolPercent')">
                     <mat-label>Pool Percent</mat-label>
                     <mat-select formControlName="poolPercent">
                         <mat-option *ngFor="let percent of poolPercents" [value]="percent">{{percent}}</mat-option>
@@ -16,7 +16,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('fmParticipationPercent')">
                     <mat-label>FM Participation Percent</mat-label>
                     <input matInput type="number" formControlName="fmParticipationPercent">
                     <mat-error>Required. Value must be between 0 and 100</mat-error>
@@ -24,7 +24,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('upbInvestorPriorAmount')">
                     <mat-label>UPB Investor Prior Amount</mat-label>
                     <input matInput type="number" formControlName="upbInvestorPriorAmount">
                     <mat-error>Required. Value must be at least 0.</mat-error>
@@ -32,7 +32,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('mortgageUpbPriorAmount')">
                     <mat-label>Mortgage UPB Prior Amount</mat-label>
                     <input matInput type="number" formControlName="mortgageUpbPriorAmount">
                     <mat-error>Required. Value must be at least 0.</mat-error>
@@ -40,7 +40,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('upbCurrentAmount')">
                     <mat-label>UPB Current Amount</mat-label>
                     <input matInput type="number" formControlName="upbCurrentAmount">
                     <mat-error>Required. Value must be at least 0.</mat-error>
@@ -50,13 +50,13 @@
             <mat-grid-tile>
                 <mat-form-field>
                     <mat-label>PI Payment Amount</mat-label>
-                    <input matInput type="number" formControlName="piPaymentAmount">
+                    <input matInput type="number" formControlName="piPaymentAmount" (click)="validateUntil('piPaymentAmount')">
                     <mat-error>Required. Value must be at least 0.</mat-error>
                 </mat-form-field>
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('noteRate')">
                     <mat-label>Note Rate</mat-label>
                     <input matInput type="number" formControlName="noteRate">
                     <mat-error>Required/ Value must be at least 0.</mat-error>
@@ -64,7 +64,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('poolTerm')">
                     <mat-label>Pool Term</mat-label>
                     <mat-select type="number" formControlName="poolTerm">
                         <mat-option *ngFor="let term of poolTerms" [value]="term">{{term}}</mat-option>
@@ -74,7 +74,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('productCode')">
                     <mat-label>Product Code</mat-label>
                     <input matInput formControlName="productCode">
                     <mat-error>Required. Lenght must be at least 3.</mat-error>
@@ -82,7 +82,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('maturityDate')">
                     <mat-label>Maturity Date</mat-label>
                     <input matInput type="date" formControlName="maturityDate">
                     <mat-error>Required</mat-error>
@@ -90,7 +90,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('noteMaturityDate')">
                     <mat-label>Note Maturity Date</mat-label>
                     <input matInput type="date" formControlName="noteMaturityDate">
                     <mat-error>Required</mat-error>
@@ -98,7 +98,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('principalAmortizationCode')">
                     <mat-label>Principal Amortization Code</mat-label>
                     <mat-select formControlName="principalAmortizationCode">
                         <mat-option *ngFor="let code of principalAmortizationCodes" [value]="code">{{code}}</mat-option>
@@ -108,7 +108,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('ddlpi')">
                     <mat-label>DDLPI</mat-label>
                     <input matInput type="date" formControlName="ddlpi">
                     <mat-error>Required</mat-error>
@@ -116,7 +116,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('activeInactiveEditCode')">
                     <mat-label>Active Inactive Edit Code</mat-label>
                     <mat-select formControlName="activeInactiveEditCode">
                         <mat-option *ngFor="let code of activeInactiveEditCodes" [value]="code">{{code}}</mat-option>
@@ -126,7 +126,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('upbAdjustmentAmountCurrent')">
                     <mat-label>UPB Adjustment Amount Current</mat-label>
                     <input matInput type="number" formControlName="upbAdjustmentAmountCurrent">
                     <mat-error>Required. Value must be at least 0.</mat-error>
@@ -134,7 +134,7 @@
             </mat-grid-tile>
 
             <mat-grid-tile>
-                <mat-form-field>
+                <mat-form-field (click)="validateUntil('loanStatus')">
                     <mat-label>Loan Status</mat-label>
                     <mat-select formControlName="loanStatus">
                         <mat-option *ngFor="let status of loanStatuses" [value]="status">{{status}}</mat-option>
