@@ -54,7 +54,7 @@ export class SapRmmConfirmComponent implements OnInit {
       .open(SubmitConfirmDialogComponent, {data: "Are you sure you want to confirm transaction?"})        // Asks user to confirm transaction
       .afterClosed()
       .pipe(filter(dialogueAnswer => dialogueAnswer === 'yes'))                                           // Filters out non-yes answer.
-      //.pipe(mergeMap(_ => { return this.dataStorageService.storeSAPRMM(this.saprmmService.formState) }))  // Stores result in DB
+      .pipe(mergeMap(_ => { return this.dataStorageService.storeSAPRMM(this.saprmmService.formState) }))  // Stores result in DB
       .pipe(mergeMap( _ => {                                                                              // Had user acknowledge transaction
         return this.dialog.open(
           AcknowledgeDialogComponent,

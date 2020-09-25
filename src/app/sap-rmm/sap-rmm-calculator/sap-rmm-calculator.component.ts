@@ -49,7 +49,7 @@ export class SapRmmCalculatorComponent implements OnInit {
   ngOnInit() {
   }
 
-  private validateUntil(formControlName: string) {
+  validateUntil(formControlName: string) {
     console.log(formControlName)
     const controlEntries = Object.entries(this.form.controls)
     for(const entry of controlEntries) {
