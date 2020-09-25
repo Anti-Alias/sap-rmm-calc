@@ -3,7 +3,7 @@ import { SAPRMMService } from '../../services/sap-rmm.service';
 import { MatDialog } from '@angular/material/dialog'
 import { SubmitConfirmDialogComponent } from 'src/app/submit-confirm-dialog/submit-confirm-dialog.component';
 import { DataStorageService } from 'src/app/services/data-storage.service';
-import { map, mergeMap } from 'rxjs/operators'
+import { filter, map, mergeMap } from 'rxjs/operators'
 import { Router } from '@angular/router';
 
 export interface SAPRMMSubData {
@@ -52,17 +52,8 @@ export class SapRmmConfirmComponent implements OnInit {
     this.dialog
       .open(SubmitConfirmDialogComponent, {data: "Are you sure you want to confirm transaction?"})
       .afterClosed()
-      .pipe(mergeMap(result=>{
-        return this.dataStorageService.storeSAPRMM(this.saprmmService.formState)
-      }))
-      .subscribe(
-        result => {
-          console.log(`Got result ${JSON.stringify(result)}`)
-          this.router.navigateByUrl('/bananas')
-        },
-        error => {
-          console.log(`Got error ${JSON.stringify(error)}`)
-        }
-      )
+      .pipe(filter(dialogueAnswer => dialogueAnswer === 'yes'))
+      .pipe(mergeMap(_ => { return this.dataStorageService.storeSAPRMM(this.saprmmService.formState) }))
+      .subscribe(result => { this.router.navigateByUrl('/')})
   }
 }
