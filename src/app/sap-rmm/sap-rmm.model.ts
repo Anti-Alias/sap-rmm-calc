@@ -1,3 +1,6 @@
+/**
+ * Raw SAPRMM input data.
+ */
 export class SAPRMM {
     constructor(
         public poolPercent: number,
@@ -18,3 +21,16 @@ export class SAPRMM {
         public loanStatus: string
     ) {}
 }
+
+/**
+ * A subset of the SAPRMM model data that is to be displayed on the screen.
+ */
+export interface SAPRMMSubData {
+    saprmmid: string;
+    upb: number;
+    rmm: string;
+    loanStatus: string,
+    upbCurrentAmount: number,
+    maturityDate: Date,
+    poolTerm: number
+  }
