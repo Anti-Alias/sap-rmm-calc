@@ -3,7 +3,7 @@ import { SAPRMMService } from '../../services/sap-rmm.service';
 import { MatDialog } from '@angular/material/dialog'
 import { SubmitConfirmDialogComponent } from 'src/app/submit-confirm-dialog/submit-confirm-dialog.component';
 import { DataStorageService } from 'src/app/services/data-storage.service';
-import { filter, map, mergeMap } from 'rxjs/operators'
+import { filter, mergeMap } from 'rxjs/operators'
 import { Router } from '@angular/router';
 import { AcknowledgeDialogComponent } from 'src/app/acknowledge-dialog/acknowledge-dialog.component';
 
@@ -60,6 +60,6 @@ export class SapRmmConfirmComponent implements OnInit {
           AcknowledgeDialogComponent,
           {data: "Transaction submitted"}).afterClosed()
       }))
-      .subscribe(result => { this.router.navigateByUrl('/')})                                             // Finished and goes to home page
+      .subscribe(_ => { this.router.navigateByUrl('/')})                                             // Finished and goes to home page
   }
 }

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { SubmitConfirmDialogComponent } from '../../submit-confirm-dialog/submit-confirm-dialog.component';
 import { SAPRMM } from '../sap-rmm.model';
 import { SAPRMMService } from '../../services/sap-rmm.service';
+import { mergeMap, filter } from 'rxjs/operators';
+import { AcknowledgeDialogComponent } from 'src/app/acknowledge-dialog/acknowledge-dialog.component';
 
 @Component({
   selector: 'app-sap-rmm-calculator',
@@ -93,11 +95,11 @@ export class SapRmmCalculatorComponent implements OnInit {
     this.dialog
       .open(SubmitConfirmDialogComponent, {data: "Are you sure you wish to submit?"})
       .afterClosed()
-      .subscribe((result)=>{
-        if(result == "yes") {
-          this.service.formState = this.getFormData()
-          this.router.navigateByUrl('/sap-rmm-confirm')
-        }
+      .pipe(filter(result => result === "yes"))
+      .pipe(mergeMap(_ => this.dialog.open(AcknowledgeDialogComponent, {data: "Data submitted"}).afterClosed()))
+      .subscribe(_ => {
+        this.service.formState = this.getFormData()
+        this.router.navigateByUrl('/sap-rmm-confirm')
       })
   }
 }
