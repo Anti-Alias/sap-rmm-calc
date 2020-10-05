@@ -2,6 +2,7 @@
  * Raw SAPRMM input data.
  */
 export class SAPRMM {
+    
     constructor(
         public poolPercent: number,
         public fmParticipationPercent: number,
@@ -20,6 +21,18 @@ export class SAPRMM {
         public upbAdjustmentAmountCurrent: number,
         public loanStatus: string
     ) {}
+
+    static toSubData(data: SAPRMM): SAPRMMSubData {
+        return {
+            saprmmid: "STUB",
+            upb: data.upbAdjustmentAmountCurrent,
+            rmm: "STUB",
+            loanStatus: data.loanStatus,
+            upbCurrentAmount: data.upbCurrentAmount,
+            maturityDate: data.maturityDate,
+            poolTerm: data.poolTerm
+        }
+    }
 }
 
 /**
@@ -33,4 +46,4 @@ export interface SAPRMMSubData {
     upbCurrentAmount: number,
     maturityDate: Date,
     poolTerm: number
-  }
+}

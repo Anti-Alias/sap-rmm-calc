@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
+import { SAPRMM, SAPRMMSubData } from '../sap-rmm/sap-rmm.model';
 import { DataStorageService } from '../services/data-storage.service';
 
 @Component({
@@ -8,9 +10,13 @@ import { DataStorageService } from '../services/data-storage.service';
 })
 export class HomeComponent implements OnInit {
 
+  dataSource: SAPRMMSubData[] = []
   constructor(private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
+    this.dataStorageService.retrieveSAPRMM().subscribe(data =>
+      this.dataSource = data.map (elem => SAPRMM.toSubData(elem))
+    )
   }
 
 }

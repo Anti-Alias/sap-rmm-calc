@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { AcknowledgeDialogComponent } from 'src/app/acknowledge-dialog/acknowled
   templateUrl: './sap-rmm-calculator.component.html',
   styleUrls: ['./sap-rmm-calculator.component.css']
 })
-export class SapRmmCalculatorComponent implements OnInit {
+export class SapRmmCalculatorComponent {
 
   // Fields that populate dropdowns. Stubs.
   poolPercents: number[] = [5, 10, 15]
@@ -48,20 +48,27 @@ export class SapRmmCalculatorComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
-  }
-
+  /**
+   * Validates form elements from top to bottom until a form element with the given name is specified.
+   * @param formControlName Control name to stop at.
+   */
   validateUntil(formControlName: string) {
     const controlEntries = Object.entries(this.form.controls)
     for(const entry of controlEntries) {
       const name = entry[0]
-      console.log(name)
       const control = entry[1]
       if(name !== formControlName)
         control.markAsTouched()
       else
         break
     }
+  }
+
+  /**
+   * @return true if form is value.
+   */
+  get isValid(): boolean {
+    return this.form.status != "INVALID"
   }
 
   private getFormData(): SAPRMM {
@@ -85,11 +92,9 @@ export class SapRmmCalculatorComponent implements OnInit {
     )
   }
 
-  // Data entered in form
-  get isValid(): boolean {
-    return this.form.status != "INVALID"
-  }
-
+  /**
+   * Invoked when submit button is pressed.
+   */
   onSubmit(event: Event): void {
     this.dialog
       .open(SubmitConfirmDialogComponent, {data: "Are you sure you wish to submit?"})

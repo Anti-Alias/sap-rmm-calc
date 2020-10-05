@@ -6,7 +6,7 @@ import { DataStorageService } from 'src/app/services/data-storage.service';
 import { filter, mergeMap } from 'rxjs/operators'
 import { Router } from '@angular/router';
 import { AcknowledgeDialogComponent } from 'src/app/acknowledge-dialog/acknowledge-dialog.component';
-import { SAPRMMSubData } from '../sap-rmm.model';
+import { SAPRMM, SAPRMMSubData } from '../sap-rmm.model';
 
 @Component({
   selector: 'app-sapp-rmm-confirm',
@@ -25,20 +25,19 @@ export class SapRmmConfirmComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const data = this.saprmmService.formState
-    this.dataSource = [
-      {
-        saprmmid: "STUB",
-        upb: data.upbAdjustmentAmountCurrent,
-        rmm: "STUB",
-        loanStatus: data.loanStatus,
-        upbCurrentAmount: data.upbCurrentAmount,
-        maturityDate: data.maturityDate,
-        poolTerm: data.poolTerm
-      }
-    ]
+    this.dataStorageService.retrieveSAPRMM().subscribe(dbData => {
+      let data = [this.saprmmService.formState]
+      if(dbData)
+        data = data.concat(dbData)
+      const formData = this.saprmmService.formState
+      this.dataSource = data.map(elem => SAPRMM.toSubData(elem))
+    })
   }
 
+  /**
+   * Invoked when confirm button is pressed.
+   * Naviages to dashboard if finished successfully.
+   */
   onConfirm(event: Event): void {
     this.dialog
       .open(SubmitConfirmDialogComponent, {data: "Are you sure you want to confirm transaction?"})        // Asks user to confirm transaction
@@ -50,6 +49,6 @@ export class SapRmmConfirmComponent implements OnInit {
           AcknowledgeDialogComponent,
           {data: "Transaction submitted"}).afterClosed()
       }))
-      .subscribe(_ => { this.router.navigateByUrl('/')})                                             // Finished and goes to home page
+      .subscribe(_ => { this.router.navigateByUrl('/')})                                                  // Finished and goes to home page
   }
 }
