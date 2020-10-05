@@ -52,7 +52,6 @@ export class SapRmmCalculatorComponent implements OnInit {
   }
 
   validateUntil(formControlName: string) {
-    console.log(formControlName)
     const controlEntries = Object.entries(this.form.controls)
     for(const entry of controlEntries) {
       const name = entry[0]
