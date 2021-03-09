@@ -1,3 +1,29 @@
 table {
     width: 100%;
 }
+
+mat-paginator {
+    display: inline-block;
+}
+
+.bottom-bar {
+    display: flex;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.push-right {
+    margin-left: 100px;
+}
+
+.edit-button {
+    color: white;
+    background-color: #00AA00;
+    margin-right: 5px;
+}
+
+.bottom-button {
+    margin: 10px;
+}
