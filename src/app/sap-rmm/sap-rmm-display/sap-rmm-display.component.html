@@ -9,11 +9,6 @@
         <td mat-cell *matCellDef="let element"> {{element.upb}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="rmm">
-        <th mat-header-cell *matHeaderCellDef>RMM</th>
-        <td mat-cell *matCellDef="let element"> {{element.rmm}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="loanStatus">
         <th mat-header-cell *matHeaderCellDef>Loan Status</th>
         <td mat-cell *matCellDef="let element"> {{element.loanStatus}} </td>
@@ -32,6 +27,11 @@
     <ng-container matColumnDef="poolTerm">
         <th mat-header-cell *matHeaderCellDef>Pool Term</th>
         <td mat-cell *matCellDef="let element"> {{element.poolTerm}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="poolPercentage">
+        <th mat-header-cell *matHeaderCellDef>Pool Percent</th>
+        <td mat-cell *matCellDef="let element"> {{element.poolPercent}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

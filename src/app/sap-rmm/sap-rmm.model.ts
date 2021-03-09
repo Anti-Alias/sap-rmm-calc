@@ -2,6 +2,8 @@
  * Raw SAPRMM input data.
  */
 export class SAPRMM {
+
+    public id: number = 0
     
     constructor(
         public poolPercent: number,
@@ -16,7 +18,7 @@ export class SAPRMM {
         public maturityDate: Date,
         public noteMaturityDate: Date,
         public principalAmortizationCode: string,
-        public ddlpi: string,
+        public ddlpi: Date,
         public activeInactiveEditCode: string,
         public upbAdjustmentAmountCurrent: number,
         public loanStatus: string
@@ -24,9 +26,9 @@ export class SAPRMM {
 
     static toSubData(data: SAPRMM): SAPRMMSubData {
         return {
-            saprmmid: "STUB",
+            saprmmid: data.id,
+            poolPercent: data.poolPercent,
             upb: data.upbAdjustmentAmountCurrent,
-            rmm: "STUB",
             loanStatus: data.loanStatus,
             upbCurrentAmount: data.upbCurrentAmount,
             maturityDate: data.maturityDate,
@@ -39,9 +41,9 @@ export class SAPRMM {
  * A subset of the SAPRMM model data that is to be displayed on the screen.
  */
 export interface SAPRMMSubData {
-    saprmmid: string;
+    saprmmid: number;
+    poolPercent: number;
     upb: number;
-    rmm: string;
     loanStatus: string,
     upbCurrentAmount: number,
     maturityDate: Date,

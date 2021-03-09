@@ -14,7 +14,7 @@ import { SAPRMMSubData } from 'src/app/sap-rmm/sap-rmm.model'
 export class SapRmmDisplayComponent {
 
   @Input() dataSource: SAPRMMSubData[]
-  displayedColumns: string[] = ['saprmmid', 'upb', 'rmm', 'loanStatus', 'upbCurrentAmount', 'maturityDate', 'poolTerm'];
+  displayedColumns: string[] = ['saprmmid', 'upb', 'loanStatus', 'upbCurrentAmount', 'maturityDate', 'poolTerm', 'poolPercentage'];
 
   constructor(private saprmmService: SAPRMMService) {}
 

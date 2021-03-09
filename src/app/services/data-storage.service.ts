@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http'
 import { SAPRMM } from '../sap-rmm/sap-rmm.model'
 import { Observable, of } from 'rxjs'
 import { environment } from '../../environments/environment'
-import { v4 as uuidv4 } from 'uuid'
 import { map } from 'rxjs/operators'
 
 @Injectable({
@@ -17,7 +16,7 @@ export class DataStorageService {
   constructor(private client: HttpClient) {}
 
   storeSAPRMM(data: SAPRMM): Observable<Object> {
-    return this.client.put(`${environment.url}/saprmm/create`, data)
+    return this.client.post(`${environment.url}/saprmm/create`, data)
   }
 
   retrieveSAPRMM(): Observable<SAPRMM[]> {
