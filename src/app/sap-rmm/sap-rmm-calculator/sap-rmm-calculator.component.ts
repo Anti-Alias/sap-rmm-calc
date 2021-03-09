@@ -18,6 +18,6 @@ export class SapRmmCalculatorComponent {
     service: SAPRMMService,
     router: Router,
   ) {
-    this.bl = new BusinessLogic(dialog, service, router)
+    this.bl = new BusinessLogic(dialog, service, router, service.formState != null)
   }
 }

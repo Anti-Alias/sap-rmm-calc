@@ -18,7 +18,7 @@
             <mat-grid-tile>
                 <mat-form-field (click)="bl.validateUntil('fmParticipationPercent')">
                     <mat-label>FM Participation Percent</mat-label>
-                    <input matInput ng-disabled="!bl.editMode" type="number" formControlName="fmParticipationPercent">
+                    <input matInput type="number" formControlName="fmParticipationPercent">
                     <mat-error>Required. Value must be between 0 and 100</mat-error>
                 </mat-form-field>
             </mat-grid-tile>

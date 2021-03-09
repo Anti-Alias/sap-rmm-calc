@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
-    this.dataStorageService.retrieveSAPRMM().subscribe(data =>
+    this.dataStorageService.retrieveAllSAPRMM().subscribe(data =>
       this.dataSource = data.map (elem => SAPRMM.toSubData(elem))
     )
   }

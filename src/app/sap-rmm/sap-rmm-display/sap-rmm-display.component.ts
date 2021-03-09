@@ -3,6 +3,7 @@ import { SAPRMMService } from 'src/app/services/sap-rmm.service';
 import { SAPRMM, SAPRMMSubData } from 'src/app/sap-rmm/sap-rmm.model'
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 /**
@@ -19,8 +20,9 @@ export class SapRmmDisplayComponent {
   displayedColumns: string[] = ['saprmmid', 'upb', 'loanStatus', 'upbCurrentAmount', 'maturityDate', 'poolTerm', 'poolPercentage', 'action'];
 
   constructor(
-    private saprmmService: SAPRMMService,
-    private dataStorageService: DataStorageService
+    private service: SAPRMMService,
+    private dataStorageService: DataStorageService,
+    private router: Router
   ) {}
 
   deleteRow(elementToDelete: SAPRMMSubData) {
@@ -39,7 +41,18 @@ export class SapRmmDisplayComponent {
     this.dataSource = copy;
   }
 
-  editRow(elementToEdit: SAPRMM) {
-    console.log(`Editing ${elementToEdit}`);
+  editRow(elementToEdit: SAPRMMSubData) {
+    this.dataStorageService.retrieveSAPRMM(elementToEdit.saprmmid)
+      .subscribe((element) => {
+        this.service.formState = element;
+        this.service.editMode = true;
+        this.router.navigateByUrl("/sap-rmm-calc");
+      })
+  }
+
+  createNewSAPRMM() {
+    this.service.formState = null;
+    this.service.editMode = false;
+    this.router.navigateByUrl("/sap-rmm-calc");
   }
 }

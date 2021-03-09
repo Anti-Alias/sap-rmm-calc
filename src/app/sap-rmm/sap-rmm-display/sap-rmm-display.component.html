@@ -48,7 +48,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <div class="bottom-bar">
-    <button class="bottom-button" mat-raised-button color="primary" routerLink="/sap-rmm-calc">Add</button>
+    <button class="bottom-button" mat-raised-button color="primary" (click)=createNewSAPRMM()>Add</button>
     <span class="spacer"></span>
     <mat-paginator [pageSizeOptions]="[5, 10, 15]"></mat-paginator>
 </div>

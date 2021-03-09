@@ -10,6 +10,7 @@ export class SAPRMMService {
    * Current state of the form.
    */
   formState?: SAPRMM = null
+  editMode: boolean = false
 
   constructor() {
     console.log("created SAPRMMService")

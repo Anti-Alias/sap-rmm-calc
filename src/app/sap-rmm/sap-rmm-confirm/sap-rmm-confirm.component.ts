@@ -25,13 +25,24 @@ export class SapRmmConfirmComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataStorageService.retrieveSAPRMM().subscribe(dbData => {
-      let data = [this.saprmmService.formState]
+    this.dataStorageService.retrieveAllSAPRMM().subscribe(dbData => {
+      let data = !this.saprmmService.editMode ? [this.saprmmService.formState] : []
       if(dbData)
         data = data.concat(dbData)
-      const formData = this.saprmmService.formState
+      if(this.saprmmService.editMode)
+        this.updateList(data);
       this.dataSource = data.map(elem => SAPRMM.toSubData(elem))
     })
+  }
+
+  updateList(data: SAPRMM[]) {
+    console.log(this.saprmmService.formState)
+    for(let i=0; i<data.length; i++) {
+      let elem = data[i];
+      if(elem.id == this.saprmmService.formState.id) {
+        data[i] = this.saprmmService.formState;
+      }
+    }
   }
 
   /**
@@ -39,11 +50,17 @@ export class SapRmmConfirmComponent implements OnInit {
    * Naviages to dashboard if finished successfully.
    */
   onConfirm(event: Event): void {
+    let fs = this.saprmmService.formState;
     this.dialog
       .open(SubmitConfirmDialogComponent, {data: "Are you sure you want to confirm transaction?"})        // Asks user to confirm transaction
       .afterClosed()
       .pipe(filter(dialogueAnswer => dialogueAnswer === 'yes'))                                           // Filters out non-yes answer.
-      .pipe(mergeMap(_ => { return this.dataStorageService.storeSAPRMM(this.saprmmService.formState) }))  // Stores result in DB
+      .pipe(mergeMap(_ => {
+        if(!this.saprmmService.editMode)
+          return this.dataStorageService.storeSAPRMM(fs)
+        else
+          return this.dataStorageService.updateSAPRMM(fs.id, SAPRMM.toSubData(fs))
+      }))  // Stores/updates result in DB
       .pipe(mergeMap( _ => {                                                                              // Had user acknowledge transaction
         return this.dialog.open(
           AcknowledgeDialogComponent,
@@ -51,4 +68,4 @@ export class SapRmmConfirmComponent implements OnInit {
       }))
       .subscribe(_ => { this.router.navigateByUrl('/')})                                                  // Finished and goes to home page
   }
-}
+};
