@@ -4,10 +4,12 @@ import { HomeComponent } from './home/home.component'
 import { SapRmmCalculatorComponent } from './sap-rmm/sap-rmm-calculator/sap-rmm-calculator.component';
 import { SapRmmConfirmComponent } from './sap-rmm/sap-rmm-confirm/sap-rmm-confirm.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SapRmmCalculatorEditorComponent } from './sap-rmm/sap-rmm-calculator/sap-rmm-calculator-editor.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'sap-rmm-calc', component: SapRmmCalculatorComponent },
+  { path: 'sap-rmm-calc-edit', component: SapRmmCalculatorEditorComponent },
   { path: 'sap-rmm-confirm', component: SapRmmConfirmComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
