@@ -15,6 +15,25 @@ import { AcknowledgeDialogComponent } from 'src/app/acknowledge-dialog/acknowled
 })
 export class SapRmmCalculatorComponent {
 
+  bl: BusinessLogic;
+
+  constructor(
+    dialog: MatDialog,
+    service: SAPRMMService,
+    router: Router,
+  ) {
+    this.bl = new BusinessLogic(dialog, service, router)
+  }
+}
+
+class BusinessLogic {
+
+  constructor(
+    private dialog: MatDialog,
+    private service: SAPRMMService,
+    private router: Router
+  ) {}
+  
   // Fields that populate dropdowns. Stubs.
   poolPercents: number[] = [5, 10, 15]
   poolTerms: number[] = [1, 3, 5, 10, 15, 20, 25, 30]
@@ -42,12 +61,6 @@ export class SapRmmCalculatorComponent {
     loanStatus: new FormControl(null, [Validators.required])
   })
 
-  constructor(
-    public dialog: MatDialog,
-    public service: SAPRMMService,
-    private router: Router
-  ) {}
-
   /**
    * Validates form elements from top to bottom until a form element with the given name is specified.
    * @param formControlName Control name to stop at.
@@ -64,7 +77,7 @@ export class SapRmmCalculatorComponent {
     }
   }
 
-  /**
+    /**
    * @return true if form is value.
    */
   get isValid(): boolean {
@@ -92,7 +105,7 @@ export class SapRmmCalculatorComponent {
     )
   }
 
-  /**
+    /**
    * Invoked when submit button is pressed.
    */
   onSubmit(event: Event): void {

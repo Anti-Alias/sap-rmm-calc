@@ -22,4 +22,8 @@ export class DataStorageService {
   retrieveSAPRMM(): Observable<SAPRMM[]> {
     return this.client.get(`${environment.url}/saprmm/findAll`).pipe(map( data => data as [SAPRMM]));
   }
+
+  deleteSAPRMM(id: number): Observable<Object> {
+    return this.client.delete(`${environment.url}/saprmm/delete/${id}`);
+  }
 }
